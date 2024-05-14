@@ -1,0 +1,189 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+body,html{
+    font-family: "Poppins", sans-serif;
+    height: 100pxc;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    margin: 0;
+    color: rgb(31, 30, 30);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.celular {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 30px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nome h3 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.cab{
+    text-align: center;
+    padding: 10%;
+}
+
+.container{
+    margin-top: 100px;
+    border: 3px solid rgb(0, 0, 0);
+    max-width: 50%; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    
+    background-image: url(imagens/fundo.png);
+    width: 500px;
+}
+
+#mensagens {
+    list-style-type: none;
+    padding: 20;
+    margin: 0;
+    height: 300px;
+    overflow-y: auto;
+}
+
+/* Estilo para cada mensagem */
+#mensagens li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #d8dfd6;
+    border-radius: 10px;
+    word-wrap: break-word; /* Adiciona quebra de palavra */
+}
+
+
+button {
+    padding: 12px 24px;
+    border: 2px solid #120024;
+    background-color: rgb(40, 2, 54);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+/* Adiciona um efeito hover */
+button:hover {
+    background-color: #3b003b;
+    border-color: #46065a;
+}
+
+/* Estilo para o botão de enviar quando desativado */
+button:disabled {
+    background-color: #7F7FD5;
+    border-color: #7F7FD5;
+    cursor: not-allowed;
+}
+
+/* Adiciona um efeito de foco */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(41, 177, 7, 0.4);
+}
+
+
+.direita {
+    text-align: right;
+    background-color: #ccc; /* Gray background color */
+}
+
+
+input {
+    width: 250px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid rgb(15, 15, 15);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #007bff; /* Adiciona um destaque quando o input está em foco */
+}
+
+/* Adiciona um efeito hover */
+input:hover {
+    border-color: #999;
+}
+
+
+.fotoPerfil {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fotoPerfil img {
+    width: 40px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 8px;
+} 
+.icones{
+  padding-left: 180px;
+}
+
+#busc{
+    margin-bottom: 7px;
+}
+
+#hamb{
+    margin-bottom: 7px;
+}
+
+#mensagens li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    word-wrap: break-word; /* Adiciona quebra de palavra */
+    max-width: 70%; /* Defina uma largura máxima para a caixa de mensagem */
+    overflow-wrap: break-word; /* Adiciona quebra de palavra em quebras de linha */
+}
+
+/* Estilo para mensagens enviadas pelo próprio usuário */
+.direita {
+    text-align: right;
+    background-color: #ccc; /* Gray background color */
+    float: right; /* Alinha à direita */
+    clear: both; /* Limpa floats anteriores */
+    margin-left: 30%; /* Adiciona um espaço para evitar que as mensagens se sobreponham */
+}
+
+/* Estilo para mensagens recebidas de outro usuário */
+.esquerda {
+    text-align: left;
+    background-color: #d8dfd6; /* Outra cor de fundo */
+    float: left; /* Alinha à esquerda */
+    clear: both; /* Limpa floats anteriores */
+    margin-right: 30%; /* Adiciona um espaço para evitar que as mensagens se sobreponham */
+}

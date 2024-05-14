@@ -1,0 +1,103 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="imagens/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="cabecalho">
+            <div class="fotoPerfil">
+                <img src="https://i.pinimg.com/564x/06/ff/c5/06ffc5c4aa9cae4e869360ad81d4f56d.jpg" alt="">
+                <div class="nome">
+                    <h3>Usuario</h3>
+                </div>
+                <div class="icones">                
+                    <img src="imagens/tel.png" style="width: 35px;" id="tel">
+                    <img src="imagens/buscar.jpg" style="width: 30px; height: 30px;" id="busc">
+                    <img src="imagens/ponto.jpg " style="height: 30px;" id="hamb">
+                </div> 
+            </div>
+        </div>
+        <div>
+            <ul id="mensagens"></ul>
+        </div>
+        <div class="cab">
+            <form>
+                <input type="text" id="nome" placeholder="Nome de usuário"/><br><br>
+                <input type="text" id="mensagem" placeholder="Mensagem"/><br><br><br>
+                <button>ENVIAR</button>
+            </form>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Código JavaScript para manipulação do socket.io
+        //sorteio
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        var idSorteio = getRandomInt(1, 10000);
+
+        console.log(idSorteio)
+
+        //Criar uma instancia do socket.io
+        const socket = io();
+        //Seleciona o valor do input nome de usuário
+        const nomeInput = document.getElementById('nome');
+        //Seleciona o valor do input da mensagem
+        const mensagemInput = document.getElementById('mensagem');
+        //Seleciona a lista de mensagens
+        const mensagens = document.getElementById('mensagens');
+        
+        // Função para exibir o nome do usuário na interface
+        function exibirNomeUsuario() {
+            const nome = nomeInput.value;
+            const nomeUsuarioElement = document.querySelector('.nome h3');
+            nomeUsuarioElement.textContent = nome;
+        }
+
+        // Adicionar evento para chamar a função quando o valor do input mudar
+        nomeInput.addEventListener('input', exibirNomeUsuario);
+
+        //Evento de envio do formulário
+        document.querySelector('form').addEventListener('submit', event => {
+            //Padrão de envios
+            event.preventDefault();
+
+            const nome = nomeInput.value;
+            const mensagem = mensagemInput.value;
+
+            //Verificar se os valores estão branco
+            if (nome.trim() && mensagem.trim()) {
+                socket.emit('chat message', { nome, mensagem,idSorteio });
+                //Limpar o input da mensagem
+                mensagemInput.value = '';
+                //Oculta o input do usuário
+                nomeInput.style.display = 'none';
+            }
+        });
+
+        socket.on('chat message', dados => {
+            const lista = document.createElement('li');
+            lista.textContent = `${dados.nome}: ${dados.mensagem}`;
+
+            if (dados.nome === nomeInput.value) {
+                lista.className = 'direita'; // Mensagem enviada pelo próprio usuário
+            } else {
+                lista.className = 'esquerda'; // Mensagem recebida de outro usuário
+            }
+
+            mensagens.appendChild(lista);
+        });
+    </script>
+</body>
+</html>
